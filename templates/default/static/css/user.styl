@@ -1,0 +1,72 @@
+rounded($r)
+    -webkit-border-radius: $r;
+    -moz-border-radius: $r;
+    border-radius: $r;
+transition($prop, $duration, $timing, $delay)
+  -webkit-transition: $prop $duration $timing $delay;
+  -moz-transition: $prop $duration $timing $delay;
+  -ms-transition: $prop $duration $timing $delay;
+  transition: $prop $duration $timing $delay;
+.user-icon
+  float: left
+  width: 50px
+  height: 50px
+  position: relative
+  .photo
+    rounded(100%)
+    overflow: hidden
+    float: left
+    width: 100%
+    height: 100%
+    background: #eeeeee
+
+  .online-icon
+    transition(opacity, 1s, ease-out, 0s)
+    opacity: 0
+    position: absolute
+    right: 0px
+    bottom: 0px
+    width: 23% !important
+    height: 23%
+    rounded(100px)
+    background: #77DD77
+    border: 2px solid white
+  &.online .online-icon
+    opacity: 1
+
+.user-registration-form
+  .user-photo .error
+    float: left
+    margin-top: -30px
+    .text
+      text-align: center
+      width: 150px
+      margin: 0px 25px
+      rounded(3px)
+  .image-loader
+    rounded(50%)
+    .source
+      rounded(50%)
+    .no-photo
+      opacity: 0.5
+      rounded(50%)
+      font-size: 1.4em
+      padding-top: 45%
+      color: #111
+      text-shadow: 0px 0px 1em #fff
+      width: 100%
+      height: 100%
+      position: inherit
+      margin: 0px
+      top: 0
+      left: 0
+      background: url('/static/img/no-photo.png') no-repeat center center
+      background-size: cover
+    .loading
+      position: inherit
+      margin: 0px
+      width: 100%
+      height: 100%
+      top: 0
+      left: 0
+      background: url('/static/img/loading.gif') no-repeat center center

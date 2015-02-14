@@ -1,0 +1,573 @@
+rounded($r)
+    -webkit-border-radius: $r;
+    -moz-border-radius: $r;
+    border-radius($r,$r,$r,$r);
+
+border-radius($tl, $tr, $br, $bl)
+  if $bl != ''
+    -webkit-border-bottom-left-radius: $bl;
+    -moz-border-radius-bottomleft: $bl;
+    border-bottom-left-radius: $bl;
+  if $br != ''
+    -webkit-border-bottom-right-radius: $br;
+    -moz-border-radius-bottomright: $br;
+    border-bottom-right-radius: $br;
+  if $tl != ''
+    -webkit-border-top-left-radius: $tl;
+    -moz-border-radius-topleft: $tl;
+    border-top-left-radius: $tl;
+  if $tr != ''
+    -webkit-border-top-right-radius: $tr;
+    -moz-border-radius-topright: $tr;
+    border-top-right-radius: $tr;
+
+transition($prop, $duration, $timing, $delay)
+  -webkit-transition: $prop $duration $timing $delay;
+  -moz-transition: $prop $duration $timing $delay;
+  -ms-transition: $prop $duration $timing $delay;
+  transition: $prop $duration $timing $delay;
+@font-face
+    font-family: 'Hattori Hanzo';
+    src: url('/static/css/fonts/HattoriHanzo.otf');
+*
+  font-family: tahoma,"Helvetica", Arial, sans-serif
+  font-size: 12px
+  padding: 0px
+  margin: 0px
+  box-sizing: border-box
+  font-weight: normal
+body, html
+  height: 100%
+.unselectable
+  -moz-user-select: -moz-none
+  -khtml-user-select: none
+  -webkit-user-select: none
+  -o-user-select: none
+  user-select: none
+
+a
+  text-decoration: none
+  &:hover
+    text-decoration: underline
+.user-icon img
+  width: 100%
+.round
+  rounded(50%)
+  overflow: hidden
+  width: auto
+table
+  border-collapse: collapse
+//----------------------------- POPUP START ---------------------------------
+.main-popup
+  display: none
+  position: fixed
+  width: 100%
+  height: 100%
+  top: 0
+  left: 0
+  z-index: 999
+  .background
+    position: absolute
+    background-color: #000000
+    opacity: 0.2
+    width: 100%
+    height: 100%
+  .container
+    display: block
+    float: left
+    rounded(4px)
+    box-shadow(0px, 0px, 10px,0px, rgba(50, 50, 50, 0.5))
+    z-index: 2
+    position: absolute
+    background-color: #ffffff
+    color: #aaaaaa
+    border: 1px solid #cccccc
+    top: 50%;
+    left: 50%;
+    .popup-header
+      float: left
+      border-bottom: 1px solid #eeeeee
+      //background-color: #666666
+      color: #f98d16
+      //border-top: 7px solid #f98d16
+      //text-transform: uppercase
+      text-align: center
+      min-height: 30px
+      width: 100%
+      .text
+        font-size: 1.3em
+        padding: 13px 20px
+        float: left
+        width: auto
+      &.non-close
+        .close
+          display: none
+        .text
+          text-align: center
+          width: 100%
+      .close
+        color: #cccccc
+        float: right
+        cursor: pointer
+        height: 40px
+        width: 40px
+        /*border-left: 1px solid #eeeeee*/
+        font-size: 20px
+        padding-top: 10px
+        &:hover
+          color: #ff6961
+
+    .popup-content
+      float: left
+      width: 100%
+      clear: both
+      > .text
+        padding: 20px
+
+      .buttons
+        clear: both
+        float: left
+        width: 100%
+        padding: 0px 10px
+        white-space: nowrap
+        overflow: hidden
+        .buttons-left
+          float: left
+          display: inline-block
+        .buttons-right
+          float: right
+          display: inline-block
+          input[type=button]
+            display: inline-block
+            margin: 10px
+//----------------------------- POPUP END ---------------------------------
+.main-wrapper
+  max-width: 960px
+  margin: auto
+body
+  background: #f7f7f7
+  color: #666666
+  > .main-wrapper
+    height: 100%
+  > .header
+    float: left
+    width: 100%
+    border-bottom: 1px solid #dddddd
+    .main-wrapper
+      padding: 0px 5px
+      height: 100%
+    a
+      color: #FF9900
+    .main
+      float: left
+      width: 100%
+      padding: 5px 20px
+      background: white
+      div[widget="user.header"]
+        float: right
+      .header-login
+        float: right
+        width: auto
+        color: #eeeeee
+        .links
+          float: left
+          padding: 8px 10px
+        .icon
+          rounded(100%)
+          overflow: hidden
+          width: 30px
+          height: 30px
+          margin: 0px 2px
+          cursor: pointer
+          float: left
+          img
+            height: 100%
+      .profile
+        float: right
+        .user-icon
+          float: right
+          width: 30px
+          height: 30px
+          img
+            width: 100%
+        .info
+          float: left
+          padding: 0px 5px
+          text-align: right
+      .logo
+        float: left;
+        padding: 5px 10px
+        img
+          height: 20px
+.frame
+  rounded(3px)
+  background: #ffffff
+  float: left
+  width: 100%
+  box-shadow: 0 1px 2px rgba(0,0,0,0.15)
+
+textarea.autosize
+  padding-bottom: 0px
+
+.custom-scroll
+  width: 100%
+  height: 100%
+  float: left
+  position: relative
+  overflow: hidden
+ul.custom-dropdown
+  display: none
+.separator
+  border-bottom: 1px solid #eeeeee
+  width: 100%
+  float: left
+  text-align: center
+  margin-bottom: 10px
+  margin-top: -5px
+  span
+    position: relative
+    color: #cccccc
+    display: inline-block
+    bottom: -0.5em
+    padding: 0px 10px
+    background: white
+
+.index-wrapper
+  position: absolute
+  float: left
+  top: 50%
+  left: 50%
+  .frame
+    float: left
+    position: relative
+    left: -50%
+    top: -80px
+    .text
+      padding: 20px 20px
+    .buttons
+      text-align: center
+      padding: 0px 10px 10px
+      input
+        float: none
+        margin: 0px 5px
+        width: 150px
+
+.title
+  text-align: center
+  padding: 12px
+  color: #ff9900
+  font-size: 1.5em
+  border-bottom: 1px solid #eeeeee
+  height: 45px
+  font-weight: 300
+  font-family: "Calibri"
+.loading
+  background: url('/static/img/loading_line.gif') no-repeat center center
+.st-chat
+  margin-top: 10px
+  height: 80%
+  .chats
+    float: left
+    width: 25%
+    height: 100%
+    border-right: 1px solid #eeeeee
+    vertical-align: top
+    .mine, .other, .list
+      float: left
+      width: 100%
+    .no-chats, .no-chats-found
+      width: 100%
+      float: left
+      text-align: center
+      color: #cccccc
+    .chat-actions, .title
+      position: relative
+      z-index: 1
+    .custom-scroll
+      .st-scroll-content
+        width: 100%
+        float: left
+      &.hide-scrollbar .chat .delete
+        right: 10px
+    .chat-actions
+      padding: 10px
+      padding-top: 0px
+      float: left
+      width: 100%
+      position: relative
+      .form
+        background: white
+        float: left
+        padding: 0
+        width: 36px
+        transition(all, .5s, ease, 0s)
+        &.active
+          width: 80%
+        .error .text
+          border-radius(0px, 0px, 0px, 3px)
+        position: relative
+        margin-top: 15px
+        rounded(3px)
+        overflow: hidden
+        border: 1px solid #dddddd
+        input
+          margin: 0
+          width: 80%
+          border: none
+        button
+          width: 36px
+          span
+            margin-left: -0.4em
+      .new-chat-form
+        float: right
+      .search-chat-form
+        input
+          margin-left: 36px
+        button
+          left: 0px
+          right: auto
+          border: none
+          border-right: 1px dashed #eeeeee
+    .chats-list-wrapper
+      padding-top: 107px
+      margin-top: -107px
+      position: relative
+      z-index: 0
+      float: left
+      width: 100%
+      height: 98%
+    .chat
+      padding: 10px
+      width: 100%
+      float: left
+      cursor: pointer
+      position: relative
+      overflow: hidden
+      white-space: nowrap
+      .message-icon
+        display: none
+      &.message
+        .message-icon
+          display: inline
+        .icon
+          display: none
+      .delete
+        display: none
+        position: absolute
+        right: 18px
+        top: 50%
+        font-size: 1.5em
+        margin-top: -0.5em
+      &:hover
+        color: #ff9900 !important
+      &.active
+        background-color: #eeeeee
+    .mine .chat:hover .delete
+      display: block
+      color: red
+        /*background-color: #ff9900 !important*/
+        /*color: white*/
+
+
+
+  .members
+    width: 25%
+    height: 100%
+    border-left: 1px solid #eeeeee
+    vertical-align: top
+  .messages
+    width: 75%
+    float: left
+    height: 100%
+    vertical-align: bottom
+    position: relative
+    padding: 10px 0px
+    .chat-join
+      color: #cccccc
+      font-size: 1.5em
+      text-align: center
+      width: 100%
+      float: left
+      top: 50%
+      position: absolute
+      input
+        float: none
+        margin: 10px 0px
+
+    .no-chat-selected-text
+      display: none
+      color: #cccccc
+      font-size: 1.5em
+      text-align: center
+      width: 100%
+      float: left
+      top: 50%
+      position: absolute;
+    &.no-chat-selected
+      .list
+        display: none
+      .no-chat-selected-text
+        display: block
+    &.no-message-form
+      .new-message
+        display: none
+      .no-chat-selected-text
+        display: block
+      .chat-messages
+        display: none !important
+    .list
+      bottom: 0px
+      width: 100%
+      float: left
+      height: 100%
+      position: relative
+      .chat
+        display: none
+        float: left
+        width: 100%
+        height: 100%
+        padding-bottom: 66px
+        &.current
+          display: block
+        .st-scroll-content-wrapper
+          height: 100% !important;
+          padding: 0px 10px
+        .st-scroll-content
+          width: 100%
+          padding-right: 20px
+        .chat-messages
+          width: 100%
+          float: left
+          .no-messages
+            color: #cccccc
+            font-size: 1.5em
+            text-align: center
+            width: 100%
+            float: left
+            top: 50%
+            position: absolute;
+
+          .message
+            float:left
+            clear: both
+            margin: 5px 0px
+            position: relative
+            width: 100%
+            &.system
+              color: #aaaaaa
+              padding: 0px 60px
+            .sender
+              position: absolute
+              float: left
+              z-index: 1
+              .user-icon
+                width: 40px
+                height: 40px
+            .info
+              float: left
+              width: 100%
+              padding-left: 50px
+              padding-right: 50px
+              position: relative
+              .arrow
+                color: #f9f9f9
+                position: absolute
+                left: 46px
+                top: 14px
+              .text
+                float: left
+                position: relative
+                padding: 13px 10px
+                rounded(3px)
+                background: #f9f9f9
+                width: 100%
+                white-space: pre-wrap
+                word-wrap: break-word
+              .datetime
+                width: 40px
+                text-align: center
+                position: absolute
+                right: 0px
+                top: 0px
+                font-size: 0.8em
+                color: #cccccc
+                padding: 5px 0px
+  .new-message
+    vertical-align: bottom
+    padding: 10px
+    position: absolute
+    bottom: 0px
+    width: 100%
+    .new-message-form
+      padding: 0px
+    .wrapper
+      float: left
+      width: 100%
+      position: relative
+      rounded(3px)
+      border: 1px solid #dddddd
+      overflow: hidden
+    textarea
+      line-height: 1.4 !important
+      padding: 10px 10px 0px
+      min-height: 42px
+      width: 92%
+      max-height: 200px
+      resize: none
+      margin: 0
+      border: none
+  button
+    outline: none
+    position: absolute
+    border: none
+    background: white
+    padding: 0px 10px
+    width: 8%
+    right: 0
+    top: 0
+    height: 100%
+    border-left: 1px dashed #dddddd
+    text-align: center
+    vertical-align: middle
+    display: table-cell
+    cursor: pointer
+
+    &:hover
+      background-color: #ff9900
+      border-color: #ff9900
+      span
+        color: #ffffff !important
+    span
+      position: absolute
+      top: 50%
+      left: 50%
+      margin-top: -0.5em
+      margin-left: -0.5em
+      font-size: 1.4em !important
+      color: #333333 !important
+
+.messages .message
+  .site-url
+    float: left
+    width: 100%
+    white-space: normal
+    .site-info
+      width: 70%
+      float: left
+      .site-title a
+        float: left
+        clear: both
+        font-weight: bold
+        font-size: 1.2em
+        color: #779ecb
+      .site-description
+        float: left
+        clear: both
+    .site-image
+      float: left
+      width: 30%
+      padding-right: 10px
+      img
+        width: 100%
+
+
