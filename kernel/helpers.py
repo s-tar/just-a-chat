@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 __author__ = 'mr.S'
-from bottle import request, FileUpload
+from bottle import request
 from PIL import Image
 import os
 
@@ -11,6 +11,7 @@ def is_ajax():
 
 def image_thumbnail(image, width, height, position=('center', 'center')):
     try:
+        from bottle import FileUpload
         if type(image) is FileUpload: image = image.file
         image = Image.open(image)
         owidth = image.size[0]

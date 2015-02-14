@@ -66,7 +66,7 @@ def join_chat(chat_id=None):
             Rooms.get('user.'+str(user.usr_id)).emit('chat.join', { "chat": chat.as_dict(),
                     "chat_item": kernel.widget.get('chat.item', {'chat': chat})})
 
-            new_message(request.db, chat, '%s %s присоединился(сь) к чату.' % (user.usr_firstname, user.usr_lastname), user, True)
+            new_message(request.db, chat, '%s %s присоединяется к чату.' % (user.usr_firstname, user.usr_lastname), user, True)
             return {"status": "ok",
                     "chat": chat.as_dict(),
                     "chat_item": kernel.widget.get('chat.item', {'chat': chat}),
@@ -87,7 +87,7 @@ def leave_chat(chat_id=None):
                 chat.deleted = True
             request.db.add(chat)
             request.db.commit()
-            new_message(request.db, chat, '%s %s покинул(а) чат.' % (user.usr_firstname, user.usr_lastname), user, True)
+            new_message(request.db, chat, '%s %s покидает чат.' % (user.usr_firstname, user.usr_lastname), user, True)
             return {"status": "ok"}
 
     return {"status": "fail"}

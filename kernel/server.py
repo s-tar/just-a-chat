@@ -16,7 +16,7 @@ import sys
 import os
 
 
-app = application = Bottle()
+app = application = default_app()
 reload(sys)
 sys.setdefaultencoding('UTF8')
 template_path = './templates/default/'
@@ -24,6 +24,21 @@ bottle.TEMPLATE_PATH.insert(0, template_path)
 
 def run(run=True):
     global app
+    # redistogo_url = os.getenv('REDISTOGO_URL', None)
+    # if redistogo_url == None:
+    #   redis_url = '127.0.0.1:6379'
+    # else:
+    #   redis_url = redistogo_url
+    #   redis_url = redis_url.split('redis://redistogo:')[1]
+    #   redis_url = redis_url.split('/')[0]
+    #   REDIS_PWD, REDIS_HOST = redis_url.split('@', 1)
+    #   redis_url = "%s?password=%s" % (REDIS_HOST, REDIS_PWD)
+    # session_opts = {
+    #     'session.type': 'redis',
+    #     'session.url': redis_url,
+    #     'session.data_dir': './cache/',
+    #     'session.key': 'appname',
+    #     'session.auto': True, }
     session_opts = {
         'session.type': 'file',
         'session.data_dir': './temp/sessions',
@@ -92,7 +107,7 @@ def run(run=True):
 
     if run:
         #bottle.run(app, host='192.168.1.2', port=3000)
-        SocketIOServer(('192.168.1.2', 3000), app).serve_forever()
+        return SocketIOServer(('192.168.1.2', 3000), app).serve_forever()
 
 
 def get_environment():

@@ -194,5 +194,5 @@ def on_disconnect(socket):
     s = socket.session()
     for name in list(socket.rooms):
         socket.leave(name)
-    if s and len(socket.room('session.'+socket.session.id()).sockets()) == 0:
+    if s and len(socket.room('session.'+str(socket.session.id())).sockets()) == 0:
         socket.session.delete()
