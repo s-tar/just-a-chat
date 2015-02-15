@@ -15,8 +15,8 @@ import kernel.db
 import sys
 import os
 
-
-app = application = default_app()
+bottle.debug(True)
+app = application = Bottle()
 reload(sys)
 sys.setdefaultencoding('UTF8')
 template_path = './templates/default/'
@@ -24,27 +24,26 @@ bottle.TEMPLATE_PATH.insert(0, template_path)
 
 def run(run=True):
     global app
-    # redistogo_url = os.getenv('REDISTOGO_URL', None)
-    # if redistogo_url == None:
-    #   redis_url = '127.0.0.1:6379'
-    # else:
-    #   redis_url = redistogo_url
-    #   redis_url = redis_url.split('redis://redistogo:')[1]
-    #   redis_url = redis_url.split('/')[0]
-    #   REDIS_PWD, REDIS_HOST = redis_url.split('@', 1)
-    #   redis_url = "%s?password=%s" % (REDIS_HOST, REDIS_PWD)
-    # session_opts = {
-    #     'session.type': 'redis',
-    #     'session.url': redis_url,
-    #     'session.data_dir': './cache/',
-    #     'session.key': 'appname',
-    #     'session.auto': True, }
+    redistogo_url = os.getenv('REDISTOGO_URL', None)
+    if redistogo_url == None:
+      redis_url = '127.0.0.1:6379'
+    else:
+      redis_url = redistogo_url
+      redis_url = redis_url.split('redis://redistogo:')[1]
+      redis_url = redis_url.split('/')[0]
+      REDIS_PWD, REDIS_HOST = redis_url.split('@', 1)
+      redis_url = "%s?password=%s" % (REDIS_HOST, REDIS_PWD)
     session_opts = {
-        'session.type': 'file',
-        'session.data_dir': './temp/sessions',
-        'session.cookie_expires': 7*24*60*60,
-        'session.auto': True}
-    from live_stylus import ConvStylus
+        'session.type': 'redis',
+        'session.url': redis_url,
+        'session.key': 'just_a_chat',
+        'session.auto': True, }
+    # session_opts = {
+    #     'session.type': 'file',
+    #     'session.data_dir': './temp/sessions',
+    #     'session.cookie_expires': 7*24*60*60,
+    #     'session.auto': True}
+    
     from kernel.socket import SocketIOServer
 
     class BeforeRequestMiddleware(object):
@@ -103,7 +102,7 @@ def run(run=True):
 
     app = BeforeRequestMiddleware(app)
     app = SessionMiddleware(app, session_opts)
-    ConvStylus()
+    
 
     if run:
         #bottle.run(app, host='192.168.1.2', port=3000)

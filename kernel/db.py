@@ -12,8 +12,8 @@ from bottle import request
 
 
 Base = declarative_base()
-engine = create_engine("mysql://"+config['db']['username']+":"+config['db']['password']
-                           + "@"+config['db']['host']+"/"+config['db']['db']+"?charset=utf8"
+engine = create_engine(config['db']['type']+"://"+config['db']['username']+":"+config['db']['password']
+                           + "@"+config['db']['host']+":"+str(config['db']['port'])+"/"+config['db']['db']
                            , encoding='utf8', echo=False, pool_recycle=3600)
 Base.metadata.create_all(engine)
 

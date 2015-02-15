@@ -114,7 +114,7 @@ def new_message_route():
 def search():
     user = request.user.get()
     text = request.forms.get('text')
-    chats = request.db().query(Chat).filter(Chat.deleted == False, Chat.name.like(text+'%'), ~Chat.members.contains(user)).all()
+    chats = request.db().query(Chat).filter(Chat.deleted == False, Chat.name.ilike(text.strip()+'%'), ~Chat.members.contains(user)).all()
     return {
         'chats': [c.as_dict() for c in chats],
         'chat_items': [kernel.widget.get('chat.item', {'chat': chat}) for chat in chats]

@@ -12,6 +12,7 @@ if 'APPDIR' not in os.environ:
 sys.path.append(path)
 os.chdir(path)
 
+
 if __name__ == '__main__':
     kernel.server.run()
 else:

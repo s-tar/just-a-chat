@@ -12,11 +12,12 @@ config = {
         'secret': 'SuperSecretText'
     },
     'db': {
+        'type': 'postgres',
         'host': "localhost",
-        'db': 'chaty',
-        'port': 3306,
-        'username': 'root',
-        'password': '',
+        'db': 'just_a_chat',
+        'port': 5432,
+        'username': 'postgres',
+        'password': 'gbgbcrf',
     },
     'sn': {
         'vk': {

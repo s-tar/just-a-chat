@@ -82,7 +82,7 @@ def login_vk():
                 response = response['response'][0]
                 vk_id = response['uid']
                 uc = request.db().query(UserCommunity).join(Community)\
-                    .filter(Community.cm_alias == 'vk', UserCommunity.ucm_external_id == vk_id).first()
+                    .filter(Community.cm_alias == 'vk', UserCommunity.ucm_external_id == str(vk_id)).first()
                 user = uc.user if uc is not None else None
                 if user is None:
                     user = User(usr_firstname=response['first_name'],
@@ -94,7 +94,7 @@ def login_vk():
                     if community is None:
                         community = Community(cm_alias='vk', cm_name='VKontakte')
 
-                    uc = UserCommunity(user=user, community=community, ucm_external_id=vk_id)
+                    uc = UserCommunity(user=user, community=community, ucm_external_id=str(vk_id))
 
                     request.db.add(uc)
                     request.db.commit()
