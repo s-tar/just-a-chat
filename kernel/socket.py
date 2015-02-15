@@ -20,8 +20,10 @@ class SocketIOServer(object):
 
         @app.route('/socket.io/<path:path>')
         def socketio(path):
+            print '--->',path
             socketio_manage(request.environ, {'/main': MainNamespace}, request)
 
+        print 'SERVER START!'
         from socketio.server import SocketIOServer
         self.server = SocketIOServer((host, port), application) if app else None
 

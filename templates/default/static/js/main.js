@@ -15,12 +15,15 @@ $(window).blur(function() {
 });
 
 var socket = io.connect(base_url+'/main');
-socket.on('connect', function(){});
+socket.on('connect', function(){
+    console.log('Socket connected')
+});
 socket.on('message', function(data){
     console.log(data);
 });
 
 $(document).ready(function(){
+    console.log('Ready')
     $.get("/config/sn", function(config){
         FB.init({
             appId      : config.fb.app_id,
