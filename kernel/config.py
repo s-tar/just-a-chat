@@ -17,7 +17,7 @@ config = {
         'db': 'just_a_chat',
         'port': 5432,
         'username': 'postgres',
-        'password': 'gbgbcrf',
+        'password': '',
     },
     'sn': {
         'vk': {
