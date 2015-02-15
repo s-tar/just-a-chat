@@ -9,6 +9,7 @@ from kernel.session import Session
 from kernel.user import User
 import inspect
 import kernel.db
+import sys
 
 routes = {}
 
@@ -21,9 +22,11 @@ class SocketIOServer(object):
         @app.route('/socket.io/<path:path>')
         def socketio(path):
             print '--->',path
+            sys.stdout.flush()
             socketio_manage(request.environ, {'/main': MainNamespace}, request)
 
         print 'SERVER START!'
+        sys.stdout.flush()
         from socketio.server import SocketIOServer
         self.server = SocketIOServer((host, port), application) if app else None
 
@@ -101,6 +104,8 @@ sockets = Sockets()
 
 class MainNamespace(BaseNamespace):
     def process_event(self, packet):
+        print 'pack --->',packet
+        sys.stdout.flush()
         try:
             name = packet['name']
             data = packet['args'][0] if packet.get('args') else []

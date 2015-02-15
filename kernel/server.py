@@ -3,6 +3,7 @@
 __author__ = 'mr.S'
 
 import bottle
+from gevent import monkey
 import datetime
 from kernel.widget import get as loadWidget
 from kernel.helpers import is_ajax
@@ -14,6 +15,7 @@ import time
 import kernel.db
 import sys
 import os
+monkey.patch_all()
 
 bottle.debug(True)
 app = application = Bottle()
