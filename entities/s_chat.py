@@ -22,10 +22,12 @@ class Chat(Base, Entity):
 
     @staticmethod
     def join_default(conn, user):
-        chat = Chat.get_by_id(conn, 1)
+        name = 'Demo chat'
+        chat = conn.query(Chat).filter(Chat.name == name).first()
+        print chat
         if not chat:
             chat = Chat()
-            chat.name = 'Demo chat'
+            chat.name = name
         chat.members.append(user)
         conn.add(chat)
         conn.commit()
