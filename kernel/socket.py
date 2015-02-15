@@ -28,7 +28,7 @@ class SocketIOServer(object):
         print 'SERVER START!'
         sys.stdout.flush()
         from socketio.server import SocketIOServer
-        self.server = SocketIOServer((host, port), application) if app else None
+        self.server = SocketIOServer((host, port), application, resource="socket.io") if app else None
 
     def serve_forever(self):
         if self.server:

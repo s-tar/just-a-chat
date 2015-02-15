@@ -108,7 +108,7 @@ def run(run=True):
 
     if run:
         #bottle.run(app, host='192.168.1.2', port=3000)
-        return SocketIOServer(('192.168.1.2', 3000), app).serve_forever()
+        return SocketIOServer(('', 9000), app).serve_forever()
 
 
 def get_environment():
