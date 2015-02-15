@@ -21,12 +21,12 @@ config = {
     },
     'sn': {
         'vk': {
-            'app_id': 3775380 ,
-            'app_secret': '6skSVjVfzcCJLCdx9NUg'
+            'app_id': 4783971 ,
+            'app_secret': 'EOlMVl0XFBOQPcH2RKsz'
         },
         'fb': {
-            'app_id': '276442509075653' ,
-            'app_secret': '931b421a32c44cbcebdccf3063bdb649'
+            'app_id': '913186355380238' ,
+            'app_secret': 'ab496243bcc6b35da1cf25b4a4494849'
         }
     }
 }
