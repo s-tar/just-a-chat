@@ -92,14 +92,15 @@ def run(run=False):
 
     @app.hook('before_request')
     def before_request():
-        request.session = Session(request)
+        request.session = Session(request.environ)
         request.db = kernel.db.Database()
         request.user = User(request.session, request.db)
         Jinja2Template.defaults['user'] = request.user
 
     @app.hook('after_request')
     def after_request():
-        request.db().close()
+        if 'db' in request:
+            request.db().close()
 
 
     app = BeforeRequestMiddleware(app)
