@@ -18,17 +18,6 @@ def socketio(path):
     from bottle import default_app
     socketio_manage(request.environ, {'/main': MainNamespace}, request)
 
-class SocketIOServer(object):
-    def __init__(self, (host, port), application):
-        host = '0.0.0.0' if host is None else host
-        port = 843 if port is None else port
-
-        from socketio.server import SocketIOServer
-        self.server = SocketIOServer((host, port), application, resource="socket.io") if app else None
-    def serve_forever(self):
-        if self.server:
-            self.server.serve_forever()
-
 
 class Actions():
     def __init__(self, container, socket):
@@ -139,6 +128,7 @@ class MainNamespace(BaseNamespace):
         if method_name is 'recv_connect': self.recv_connect()
 
     def initialize(self):
+        print '---->',self
         self.session = Session(self.request)
         self.process_event({'name': 'initialize'})
 
