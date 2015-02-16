@@ -13,11 +13,11 @@ config = {
     },
     'db': {
         'type': 'postgres',
-        'host': "ec2-54-83-5-151.compute-1.amazonaws.com",
-        'db': 'd7qf7us2gskvj9',
+        'host': "localhost",
+        'db': 'just_a_chat',
         'port': 5432,
-        'username': 'jhglzvqxvphlei',
-        'password': 'FYXE0ZB8MConFZ7zmfVibigGzN',
+        'username': 'postgres',
+        'password': 'gbgbcrf',
     },
     'sn': {
         'vk': {

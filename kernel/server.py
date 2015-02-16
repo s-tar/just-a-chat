@@ -18,7 +18,7 @@ import os
 monkey.patch_all()
 
 bottle.debug(True)
-app = application = Bottle()
+app = application = default_app()
 reload(sys)
 sys.setdefaultencoding('UTF8')
 template_path = './templates/default/'
@@ -45,8 +45,6 @@ def run(run=True):
         'session.data_dir': './temp/sessions',
         'session.cookie_expires': 7*24*60*60,
         'session.auto': True}
-    
-    from kernel.socket import SocketIOServer
 
     class BeforeRequestMiddleware(object):
         def __init__(self, app):
@@ -92,6 +90,7 @@ def run(run=True):
 
     @app.hook('before_request')
     def before_request():
+        print request
         request.session = Session(request)
         request.db = kernel.db.Database()
         request.user = User(request.session, request.db)
@@ -106,9 +105,10 @@ def run(run=True):
     app = SessionMiddleware(app, session_opts)
     
 
+    #bottle.run(app, host='192.168.1.2', port=3000)
     if run:
-        #bottle.run(app, host='192.168.1.2', port=3000)
-        return SocketIOServer(('', 9000), app).serve_forever()
+        SocketIOServer(('0.0.0.0', 9000), app).serve_forever()
+    
 
 
 def get_environment():

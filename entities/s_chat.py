@@ -24,7 +24,6 @@ class Chat(Base, Entity):
     def join_default(conn, user):
         name = 'Demo chat'
         chat = conn.query(Chat).filter(Chat.name == name).first()
-        print chat
         if not chat:
             chat = Chat()
             chat.name = name

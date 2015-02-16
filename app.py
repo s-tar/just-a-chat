@@ -2,9 +2,8 @@
 # -*- coding: utf-8 -*-
 __author__ = 'mr.S'
 import os, sys
-from gevent import monkey
 import kernel.server
-monkey.patch_all()
+
 
 path = os.path.dirname(os.path.abspath(__file__))
 if 'APPDIR' not in os.environ:
@@ -15,8 +14,8 @@ os.chdir(path)
 
 
 if __name__ == '__main__':
-    kernel.server.run()
+    kernel.server.run(run=True)
 else:
-    kernel.server.run(run=False)
+	kernel.server.run()
 
 application = kernel.server.app

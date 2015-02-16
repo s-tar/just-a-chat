@@ -13,23 +13,18 @@ import sys
 
 routes = {}
 
+@app.route('/socket.io/<path:path>')
+def socketio(path):
+    from bottle import default_app
+    socketio_manage(request.environ, {'/main': MainNamespace}, request)
 
 class SocketIOServer(object):
     def __init__(self, (host, port), application):
         host = '0.0.0.0' if host is None else host
         port = 843 if port is None else port
 
-        @app.route('/socket.io/<path:path>')
-        def socketio(path):
-            print '--->',path
-            sys.stdout.flush()
-            socketio_manage(request.environ, {'/main': MainNamespace}, request)
-
-        print 'SERVER START!'
-        sys.stdout.flush()
         from socketio.server import SocketIOServer
         self.server = SocketIOServer((host, port), application, resource="socket.io") if app else None
-
     def serve_forever(self):
         if self.server:
             self.server.serve_forever()
@@ -104,8 +99,6 @@ sockets = Sockets()
 
 class MainNamespace(BaseNamespace):
     def process_event(self, packet):
-        print 'pack --->',packet
-        sys.stdout.flush()
         try:
             name = packet['name']
             data = packet['args'][0] if packet.get('args') else []
