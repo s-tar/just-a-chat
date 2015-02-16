@@ -13,6 +13,8 @@ sys.path.append(path)
 os.chdir(path)
 
 
+print '------------------------------------------------>', __name__
+
 if __name__ == '__main__':
     kernel.server.run(run=True)
 else:
