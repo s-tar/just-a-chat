@@ -128,7 +128,7 @@ class MainNamespace(BaseNamespace):
         if method_name is 'recv_connect': self.recv_connect()
 
     def initialize(self):
-        print '---->',self
+        print '--------------------------------------->', dir(self)
         self.session = Session(self.request)
         self.process_event({'name': 'initialize'})
 
