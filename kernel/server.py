@@ -110,7 +110,7 @@ def run(run=False):
     if run:
         import kernel.socket
         from socketio.server import SocketIOServer
-        SocketIOServer(('0.0.0.0', 3000), app).serve_forever()
+        SocketIOServer(('192.168.1.2', 3000), app).serve_forever()
     
 
 

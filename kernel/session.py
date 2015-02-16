@@ -6,10 +6,10 @@ __author__ = 'mr.S'
 class Session(object):
     __sessions = {}
 
-    def __init__(self, request):
-        self.__id = request.get_cookie('beaker.session.id')
+    def __init__(self, environ):
+        self.__id = self.environ.get('bottle.request.cookies', {}).get('beaker.session.id')
         if self.__id not in self.__class__.__sessions:
-            self.__class__.__sessions[self.__id] = request.environ.get('beaker.session')
+            self.__class__.__sessions[self.__id] = environ.get('beaker.session')
 
     def __call__(self):
         return self.get()

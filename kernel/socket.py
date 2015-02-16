@@ -128,7 +128,9 @@ class MainNamespace(BaseNamespace):
         if method_name is 'recv_connect': self.recv_connect()
 
     def initialize(self):
-        print '--------------------------------------->', dir(self)
+        print '------------------->', self.environ.get('bottle.request.cookies', {}).get('beaker.session.id')
+        # for key,val in self.environ.items():
+        #     print key,'  ->  ', val
         self.session = Session(self.request)
         self.process_event({'name': 'initialize'})
 
