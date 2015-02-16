@@ -10,6 +10,7 @@ from kernel.helpers import is_ajax
 from bottle import default_app, Bottle, route, static_file, ServerAdapter, Jinja2Template, request, error, redirect, jinja2_template as template
 from kernel.session import Session
 from beaker.middleware import SessionMiddleware
+
 from kernel.user import User
 import time
 import kernel.db
@@ -24,8 +25,9 @@ sys.setdefaultencoding('UTF8')
 template_path = './templates/default/'
 bottle.TEMPLATE_PATH.insert(0, template_path)
 
-def run(run=True):
+def run(run=False):
     global app
+    import kernel.module
     # redistogo_url = os.getenv('REDISTOGO_URL', None)
     # if redistogo_url == None:
     #   redis_url = '127.0.0.1:6379'
@@ -90,7 +92,6 @@ def run(run=True):
 
     @app.hook('before_request')
     def before_request():
-        print request
         request.session = Session(request)
         request.db = kernel.db.Database()
         request.user = User(request.session, request.db)
@@ -107,7 +108,9 @@ def run(run=True):
 
     #bottle.run(app, host='192.168.1.2', port=3000)
     if run:
-        SocketIOServer(('0.0.0.0', 9000), app).serve_forever()
+        import kernel.socket
+        from socketio.server import SocketIOServer
+        SocketIOServer(('0.0.0.0', 3000), app).serve_forever()
     
 
 
