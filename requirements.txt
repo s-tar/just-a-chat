@@ -12,6 +12,7 @@ gevent==1.0.1
 gevent-socketio==0.3.6
 gevent-websocket==0.9.3
 greenlet==0.4.5
+gunicorn==0.16.1
 opengraph==0.5
 psycopg2==2.6
 redis==2.10.3
