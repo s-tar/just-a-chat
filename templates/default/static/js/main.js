@@ -15,9 +15,7 @@ $(window).blur(function() {
 });
 
 var socket = io.connect(base_url+'/main');
-socket.on('connect', function(){
-    console.log('Socket connected')
-});
+socket.on('connect', function(){});
 socket.on('message', function(data){
     console.log(data);
 });
